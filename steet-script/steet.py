@@ -6,7 +6,7 @@ from colorama import *
 
 init()
 
-os.system(f"{Fore.YELLOW}figlet steet")
+os.system(f"figlet steet")
 print(f"{Fore.MAGENTA}             by inotsu\n\n{Fore.RESET}")
 
 if sys.argv[1] == "-d":

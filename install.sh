@@ -3,7 +3,7 @@ sudo go install github.com/lc/gau/v2/cmd/gau@latest
 sudo go install -v github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest
 sudo go install github.com/tomnomnom/assetfinder@latest
 sudo go install github.com/projectdiscovery/katana/cmd/katana@latest
-sudo git clone https://github.com/m4ll0k/SecretFinder.git secretfinder
+sudo git clone https://github.com/m4ll0k/SecretFinder.git
 sudo cd SecretFinder
 sudo python -m pip install -r requirements.txt
 cd ..
@@ -16,6 +16,5 @@ sudo mv /root/go/bin/waybackurls /usr/local/bin
 sudo apt install figlet
 sudo mv steet-script /usr/local/bin
 sudo mv steet /usr/local/bin
-cd ..
 sudo rm -rf steet
 cd ..

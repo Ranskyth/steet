@@ -2,9 +2,12 @@
 import os
 import threading
 import sys
+from colorama import *
 
-os.system("figlet steet")
-print("             by inotsu\n\n")
+init()
+
+os.system(f"{Fore.YELLOW}figlet steet")
+print(f"{Fore.MAGENTA}             by inotsu\n\n{Fore.RESET}")
 
 if sys.argv[1] == "-d":
     dominio = sys.argv[2]

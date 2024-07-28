@@ -20,6 +20,6 @@ elif sys.argv[1] == "-u":
 elif sys.argv[1] == "-js":
     os.system(f"cat {sys.argv[2]} | while read url; do python3 /usr/local/bin/SecretFinder/SecretFinder.py -i $url -o cli; done")
 elif sys.argv[1] == "-h" or "--help":
-    print("-d         scan de subdominios")
-    print("-u         scan de urls")
+    print("-d         scan de subdominios com base em dominio")
+    print("-u         scan de urls com base em subdominios e dominios")
     print("-js        scan de javascript")

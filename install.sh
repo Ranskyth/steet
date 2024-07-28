@@ -8,6 +8,11 @@ sudo cd SecretFinder
 sudo python -m pip install -r requirements.txt
 cd ..
 sudo mv SecretFinder /usr/local/bin
+sudo mv /root/go/bin/assetfinder /usr/local/bin
+sudo mv /root/go/bin/gau /usr/local/bin
+sudo mv /root/go/bin/katana /usr/local/bin
+sudo mv /root/go/bin/subfinder /usr/local/bin
+sudo mv /root/go/bin/waybackurls /usr/local/bin
 sudo apt install figlet
 sudo mv .steet-script /usr/local/bin
 sudo mv steet /usr/local/bin

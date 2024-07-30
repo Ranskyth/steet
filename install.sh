@@ -20,4 +20,4 @@ sudo mv steet-script /usr/local/bin
 sudo mv steet /usr/local/bin
 cd ..
 sudo rm -rf steet
-
+cd ..

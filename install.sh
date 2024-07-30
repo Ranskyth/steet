@@ -18,6 +18,3 @@ sudo mv /root/go/bin/waybackurls /usr/local/bin
 sudo apt install figlet
 sudo mv steet-script /usr/local/bin
 sudo mv steet /usr/local/bin
-cd ..
-sudo rm -rf steet
-cd ..

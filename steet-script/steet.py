@@ -39,10 +39,13 @@ def main():
 
     if(sys.argv[1] == "-d"):
         dominio = sys.argv[2]
+        reconSubs("-d", dominio)
+
+    elif(sys.argv[1] == "-dl"):
+        dominio = sys.argv[2]
         reconSubs("-dl", dominio)
 
     elif sys.argv[1] == "-u":
-
         wayback = f"cat {sys.argv[2]} | waybackurls > wayback.txt"
         katana = f"cat {sys.argv[2]} | katana -silent -d 10 -o katana.txt"
         gau = f"cat {sys.argv[2]} | gau > gau.txt"
@@ -62,13 +65,12 @@ def main():
         comand_run("sort -u gau.txt katana.txt wayback.txt > fullurls.txt")
 
     elif sys.argv[1] == "-js":
-
         comand_run(f"cat {sys.argv[2]} | while read url; do python3 /usr/local/bin/SecretFinder/SecretFinder.py -i $url -o cli; done")
 
     elif sys.argv[1] == "-h" or "--help":
-
-        print("-d         scan de subdominios com base em dominio")
-        print("-u         scan de urls com base em subdominios e dominios")
-        print("-js        scan de javascript")
+        print("-d         scan de subdominios com base em um dominio, exemplo : target.com")
+        print("-dl        scan de subdominio com base em uma lista de dominios, exemplo : dominios.txt")
+        print("-u         scan de urls com base em subdominios e dominios, exemplo : subdominios.txt")
+        print("-js        scan de javascript com base em lista de urls com arquivos javascript, exemplo : javascript.txt")
 
 main()

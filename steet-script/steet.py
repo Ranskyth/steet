@@ -63,7 +63,7 @@ def main():
 
     elif sys.argv[1] == "-js":
 
-        subprocess.run(f"cat {sys.argv[2]} | while read url; do python3 /usr/local/bin/SecretFinder/SecretFinder.py -i $url -o cli; done")
+        comand_run(f"cat {sys.argv[2]} | while read url; do python3 /usr/local/bin/SecretFinder/SecretFinder.py -i $url -o cli; done")
 
     elif sys.argv[1] == "-h" or "--help":
 

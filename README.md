@@ -1,3 +1,3 @@
 ### Steet
 
-<p>Steet é uma ferramenta automatizada para fazer recon</p>
+<p>Steet é uma ferramenta automatizada para recon</p>

@@ -25,7 +25,6 @@ def reconSubs(arg, dominio):
         t2.join()
 
         comand_run(f"sort -u {dominio}/assetfinder.txt {dominio}/subfinder.txt > {dominio}/subdominios.txt")
-        comand_run(f"cat {dominio}/subdominios.txt | httpx -silent -o subdominios_ativos.txt")
 
 def main():
     init()

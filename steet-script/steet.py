@@ -8,19 +8,11 @@ from colorama import *
 def comand_run(comand):
     subprocess.run(comand, shell=True)
 
-def reconSubs():
-    os.system(f"figlet steet")
-    print(f"{Fore.MAGENTA}             by inotsu\n\n{Fore.RESET}")
-
-    if len(sys.argv) < 2:
-        print("Uso: [opção] [argumentos]")
-        sys.exit(1)
-
-    if sys.argv[1] == "-d":
+def reconSubs(arg, dominio):
         dominio = sys.argv[2]
         comand_run(f"mkdir {dominio}")
 
-        subfinder = f"subfinder -silent -d {dominio} -all -o {dominio}/subfinder.txt"
+        subfinder = f"subfinder -silent {arg} {dominio} -all -o {dominio}/subfinder.txt"
         assetfinder = f"assetfinder {dominio} > {dominio}/assetfinder.txt"
 
         t1 = threading.Thread(target=comand_run, args=(subfinder,))
@@ -38,8 +30,16 @@ def reconSubs():
 def main():
     init()
 
+    os.system(f"figlet steet")
+    print(f"{Fore.MAGENTA}             by inotsu\n\n{Fore.RESET}")
+
+    if len(sys.argv) < 2:
+        print("Uso: [opção] [argumentos]")
+        sys.exit(1)
+
     if(sys.argv[1] == "-d"):
-        reconSubs()
+        dominio = sys.argv[2]
+        reconSubs("-dl", dominio)
 
     elif sys.argv[1] == "-u":
 

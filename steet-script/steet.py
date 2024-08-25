@@ -30,7 +30,7 @@ def main():
     init()
 
     os.system(f"figlet steet")
-    print(f"{Fore.MAGENTA}             by inotsu\n\n{Fore.RESET}")
+    print(f"{Fore.MAGENTA}             by Ranskyth\n\n{Fore.RESET}")
 
     if len(sys.argv) < 2:
         print("Uso: [opção] [argumentos]")

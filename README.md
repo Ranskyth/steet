@@ -6,16 +6,10 @@
 
 ```
 git clone https://github.com/GabrielLimaG3/steet
-```
 
-```
 cd steet
-```
 
-```
 chmod +x install.sh
-```
 
-```
 ./install.sh
 ```

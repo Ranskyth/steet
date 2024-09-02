@@ -11,5 +11,7 @@ cd steet
 
 chmod +x install.sh
 
+chmod +x steet
+
 ./install.sh
 ```

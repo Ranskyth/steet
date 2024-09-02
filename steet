@@ -97,6 +97,6 @@ def main():
         print("-d         scan de subdominios com base em um dominio, exemplo : target.com")
         print("-dl        scan de subdominio com base em uma lista de dominios, exemplo : dominios.txt")
         print("-u         scan de urls com base em subdominios e dominios, exemplo : subdominios.txt")
-        print("-js        scan de javascript com base em lista de urls com arquivos javascript, exemplo : javascript.txt")
+        print("-js        scan de javascript com base em lista de urls, exemplo : javascript_urls.txt")
 
 main()

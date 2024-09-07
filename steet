@@ -53,7 +53,7 @@ def reconSubs(arg, dominio):
 
         comand_run(f"sort -u assetfinder.txt subfinder.txt > subdominios.txt")
 
-      else:
+    else:
         subfinder = f"subfinder -silent {arg} {dominio} -all -o subfinder.txt"
         assetfinder = f"cat {dominio} | assetfinder > assetfinder.txt"
 

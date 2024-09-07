@@ -37,7 +37,6 @@ def comand_run(comand):
 
 def reconSubs(arg, dominio):
         dominio = sys.argv[2]
-        comand_run(f"mkdir {dominio}")
 
         if(arg != "-dl"):
           subfinder = f"subfinder -silent {arg} {dominio} -all -o subfinder.txt"

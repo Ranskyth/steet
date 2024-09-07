@@ -33,14 +33,18 @@ logo = r'''
 '''
 
 def comand_run(comand):
-    subprocess.run(comand, shell=True)
+    subprocess.run(comand, shell=False)
 
 def reconSubs(arg, dominio):
         dominio = sys.argv[2]
         comand_run(f"mkdir {dominio}")
 
-        subfinder = f"subfinder -silent {arg} {dominio} -all -o {dominio}/subfinder.txt"
-        assetfinder = f"assetfinder {dominio} > {dominio}/assetfinder.txt"
+        if(arg != "-dl"):
+          subfinder = f"subfinder -silent {arg} {dominio} -all -o subfinder.txt"
+          assetfinder = f"assetfinder {dominio} > assetfinder.txt"
+        else:
+          subfinder = f"subfinder -silent {arg} {dominio} -all -o subfinder-dl.txt"
+          assetfinder = f"cat {dominio} | assetfinder > assetfinder-dl.txt"
 
         t1 = threading.Thread(target=comand_run, args=(subfinder,))
         t2 = threading.Thread(target=comand_run, args=(assetfinder,))
@@ -51,7 +55,7 @@ def reconSubs(arg, dominio):
         t1.join()
         t2.join()
 
-        comand_run(f"sort -u {dominio}/assetfinder.txt {dominio}/subfinder.txt > {dominio}/subdominios.txt")
+        comand_run(f"sort -u assetfinder.txt subfinder.txt > subdominios.txt")
 
 def main():
     init()

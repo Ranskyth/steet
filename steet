@@ -54,8 +54,8 @@ def reconSubs(arg, dominio):
         comand_run(f"sort -u assetfinder.txt subfinder.txt > subdominios.txt")
 
     else:
-        subfinder = f"subfinder -silent {arg} {dominio} -all -o subfinder.txt"
-        assetfinder = f"cat {dominio} | assetfinder > assetfinder.txt"
+        subfinder = f"subfinder -silent -dL {dominio} -all -o subfinder-dl.txt"
+        assetfinder = f"cat {dominio} | assetfinder > assetfinder-dl.txt"
 
         t1 = threading.Thread(target=comand_run, args=(subfinder,))
         t2 = threading.Thread(target=comand_run, args=(assetfinder,))
@@ -66,7 +66,7 @@ def reconSubs(arg, dominio):
         t1.join()
         t2.join()
 
-        comand_run(f"sort -u assetfinder.txt subfinder.txt > subdominios.txt")
+        comand_run(f"sort -u assetfinder-dl.txt subfinder-dl.txt > subdominios-dl.txt")
 
 def main():
     init()
@@ -78,13 +78,11 @@ def main():
         print("Uso: [opção] [argumentos]")
         sys.exit(1)
 
-    if(sys.argv[1] == "-d"):
-        dominio = sys.argv[2]
-        reconSubs("-d", dominio)
+    elif(sys.argv[1] == "-d"):
+        reconSubs("-d", sys.argv[2])
 
     elif(sys.argv[1] == "-dl"):
-        dominio = sys.argv[2]
-        reconSubs("-dl", dominio)
+        reconSubs("-dl", sys.argv[2])
 
     elif sys.argv[1] == "-u":
         wayback = f"cat {sys.argv[2]} | waybackurls > wayback.txt"

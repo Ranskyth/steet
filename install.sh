@@ -1,6 +1,6 @@
 sudo git clone https://github.com/m4ll0k/SecretFinder.git
 sudo cd SecretFinder
-sudo python -m pip install -r requirements.txt
+sudo python3 -m pip install -r requirements.txt
 sudo go install github.com/tomnomnom/waybackurls@latest
 sudo go install github.com/lc/gau/v2/cmd/gau@latest
 sudo go install -v github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest

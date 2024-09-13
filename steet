@@ -41,17 +41,23 @@ def reconSubs(arg, dominio):
     if(arg == "-d"):
         subfinder = f"subfinder -silent {arg} {dominio} -all -o subfinder.txt"
         assetfinder = f"assetfinder {dominio} > assetfinder.txt"
+        sublist3r = f"sublist3r -d {dominio} -o sublist3r.txt"
 
         t1 = threading.Thread(target=comand_run, args=(subfinder,))
         t2 = threading.Thread(target=comand_run, args=(assetfinder,))
+        t3 = threading.Thread(target=comand_run, args=(sublist3r,))
 
         t1.start()
         t2.start()
+        t3.start()
 
         t1.join()
         t2.join()
+        t3.join()
 
-        comand_run(f"sort -u assetfinder.txt subfinder.txt > subdominios.txt")
+        comand_run("cat subfinder.txt > subdominios.txt")
+        comand_run("cat assetfinder.txt | anew subdominios.txt")
+        comand_run("cat sublist3r.txt | anew subdominios.txt")
 
     else:
         subfinder = f"subfinder -silent -dL {dominio} -all -o subfinder-dl.txt"

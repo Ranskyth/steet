@@ -37,27 +37,33 @@ def comand_run(comand):
 
 def reconSubs(arg, dominio):
     dominio = sys.argv[2]
+    comand_run("mkdir subs_tools")
 
     if(arg == "-d"):
-        subfinder = f"subfinder -silent {arg} {dominio} -all -o subfinder.txt"
-        assetfinder = f"assetfinder {dominio} > assetfinder.txt"
-        sublist3r = f"sublist3r -d {dominio} -o sublist3r.txt"
-
+        subfinder = f"subfinder -silent {arg} {dominio} -all -o subs_tools/subfinder.txt"
+        assetfinder = f"assetfinder -subs-only {dominio} > subs_tools/assetfinder.txt"
+        sublist3r = f"sublist3r -d {dominio} -o subs_tools/sublist3r.txt"
+        crt = f"curl -s \"https://crt.sh/?q={dominio}&output=json\" | jq -r '.[].name_value' | sed 's/\\*\\.//g' | sort -u > subs_tools/crt.txt"
+        
         t1 = threading.Thread(target=comand_run, args=(subfinder,))
         t2 = threading.Thread(target=comand_run, args=(assetfinder,))
         t3 = threading.Thread(target=comand_run, args=(sublist3r,))
-
+        t4 = threading.Thread(target=comand_run, args=(crt,))
+        
         t1.start()
         t2.start()
         t3.start()
+        t4.start()
 
         t1.join()
         t2.join()
         t3.join()
+        t4.join()
 
-        comand_run("cat subfinder.txt > subdominios.txt")
-        comand_run("cat assetfinder.txt | anew subdominios.txt")
-        comand_run("cat sublist3r.txt | anew subdominios.txt")
+        comand_run("cat subs_tools/subfinder.txt > subdominios.txt")
+        comand_run("cat subs_tools/assetfinder.txt | anew subdominios.txt")
+        comand_run("cat subs_tools/sublist3r.txt | anew subdominios.txt")
+        comand_run("cat subs_tools/crt.txt | anew subdominios.txt")
 
     else:
         subfinder = f"subfinder -silent -dL {dominio} -all -o subfinder-dl.txt"

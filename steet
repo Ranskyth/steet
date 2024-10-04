@@ -64,6 +64,9 @@ def reconSubs(arg, dominio):
         comand_run("cat subs_tools/assetfinder.txt | anew subdominios.txt")
         comand_run("cat subs_tools/sublist3r.txt | anew subdominios.txt")
         comand_run("cat subs_tools/crt.txt | anew subdominios.txt")
+        comand_run("cat subdominios.txt | httpx --silent -o subdominios_ativos.txt")
+        comand_run("clear")
+        comand_run("cat subdominios_ativos.txt | httpx -sc --title -td")
 
     else:
         subfinder = f"subfinder -silent -dL {dominio} -all -o subfinder-dl.txt"
@@ -97,9 +100,10 @@ def main():
         reconSubs("-dl", sys.argv[2])
 
     elif sys.argv[1] == "-u":
-        wayback = f"cat {sys.argv[2]} | waybackurls > wayback.txt"
-        katana = f"cat {sys.argv[2]} | katana -silent -d 10 -o katana.txt"
-        gau = f"cat {sys.argv[2]} | gau > gau.txt"
+        comand_run("mkdir Urls")
+        wayback = f"cat {sys.argv[2]} | waybackurls > Urls/wayback.txt"
+        katana = f"cat {sys.argv[2]} | katana -silent -d 10 -o Urls/katana.txt"
+        gau = f"cat {sys.argv[2]} | gau > Urls/gau.txt"
 
         t1 = threading.Thread(target=comand_run,args=(wayback,))
         t2 = threading.Thread(target=comand_run, args=(katana,))
@@ -113,7 +117,7 @@ def main():
         t2.join()
         t3.join()
 
-        comand_run("sort -u gau.txt katana.txt wayback.txt > fullurls.txt")
+        comand_run("sort -u Urls/gau.txt Urls/katana.txt Urls/wayback.txt > fullurls.txt")
 
     elif sys.argv[1] == "-js":
         comand_run(f"cat {sys.argv[2]} | while read url; do python3 /usr/local/bin/SecretFinder/SecretFinder.py -i $url -o cli; done")

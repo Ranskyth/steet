@@ -55,7 +55,6 @@ def reconSubs(arg, dominio):
         t3.start()
         t4.start()
 
-        t1.join()
         t2.join()
         t3.join()
         t4.join()
@@ -64,7 +63,8 @@ def reconSubs(arg, dominio):
         comand_run("cat subs_tools/assetfinder.txt | anew subdominios.txt")
         comand_run("cat subs_tools/sublist3r.txt | anew subdominios.txt")
         comand_run("cat subs_tools/crt.txt | anew subdominios.txt")
-        comand_run("cat subdominios.txt | httpx --silent -o subdominios_ativos.txt")
+        comand_run("cat subdominios.txt | naabu > subports.txt")
+        comand_run("cat subports.txt | httpx --silent -o subdominios_ativos.txt")
         comand_run("clear")
         comand_run("cat subdominios_ativos.txt | httpx -sc --title -td")
 
@@ -99,6 +99,9 @@ def main():
     elif(sys.argv[1] == "-dl"):
         reconSubs("-dl", sys.argv[2])
 
+    elif(sys.argv[1] == "-f"):
+        comand_run(f"ffuf -w {sys.argv[2]}:DOMAIN -w {sys.argv[3]}:FUZZ -u https://DOMAIN/FUZZ -> fuzz.txt")
+
     elif sys.argv[1] == "-u":
         comand_run("mkdir Urls")
         wayback = f"cat {sys.argv[2]} | waybackurls > Urls/wayback.txt"
@@ -127,5 +130,6 @@ def main():
         print("-dl        scan de subdominio com base em uma lista de dominios, exemplo : dominios.txt")
         print("-u         scan de urls com base em subdominios e dominios, exemplo : subdominios.txt")
         print("-js        scan de javascript com base em lista de urls, exemplo : javascript_urls.txt")
+        print("-f         Fuzz no host exemplo : -f file_subdominio wordlist")
 
 main()

@@ -4,17 +4,3 @@
 <div>
   <img width=350px height=350px src="Captura de tela de 2024-09-02 15-37-49.png"/>
 </div>
-
-### instalação 
-
-```
-git clone https://github.com/GabrielLimaG3/steet
-
-cd steet
-
-chmod +x install.sh
-
-chmod +x steet
-
-./install.sh
-```
